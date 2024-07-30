@@ -1,4 +1,6 @@
 let clickCounter = 0;
+let maxClick = 45;
+let minClick = 7;
 
 function updateName() {
     ++clickCounter;
@@ -14,15 +16,15 @@ function updateName() {
 
 let cells = document.getElementsByClassName("col-1");
 
-for (let i = 0; i < cells.length; i++) {
+for (let i = 0; i < cells.length; ++i) {
     cells[i].onclick = updateCellValue;
 }
 
+let matrixColumns;
 let lineIDs = [["1", "2", "3", "4", "5", "6", "7"], ["8", "9", "10", "11", "12",   
     "13", "14"], ["15", "16", "17", "18", "19", "20", "21"], ["22", "23", "24", 
     "25", "26", "27", "28"], ["29", "30", "31", "32", "33", "34", "35"], ["36", 
     "37", "38", "39", "40", "41", "42"]];
-let matrixColumns = 7;
 let setSixIDs = [["1", "8", "15", "22", "29", "36"], ["2", "9", "16", "23", "30" 
     , "37"], ["3", "10", "17", "24", "31", "38"], ["4", "11", "18", "25", "32", 
     "39"], ["5", "12", "19", "26", "33", "40"], ["6", "13", "20", "27", "34",   
@@ -39,16 +41,16 @@ function updateCellValue() {
     elementID = this.id;
     ++clickCounter;
     if (clickCounter % 2 != 0 && 
-        document.getElementById("winnerIs").innerHTML === "" && clickCounter < 
-            45) {
+        document.getElementById("winnerIs").innerHTML === "" &&  
+        clickCounter < maxClick) {
         let redCell = document.getElementById(elementID);
         redCell.style.background = "red";
     } else if (document.getElementById("winnerIs").innerHTML === "" && 
-        clickCounter < 45) {
+        clickCounter < maxClick) {
         let yellowCell = document.getElementById(elementID);
         yellowCell.style.background = "yellow";
     }     
-    if (clickCounter >= 7) {
+    if (clickCounter >= minClick) {
         matrixColumns = 7;       
         checkForWinner(lineIDs);
         matrixColumns = 6;
@@ -77,11 +79,11 @@ function checkForWinner(array) {
             }
             if (matchPlayer1 === 4) {          
                 document.getElementById("winnerIs").innerHTML = 
-                document.getElementById("Player1").innerHTML + " WON!";           
+                    document.getElementById("Player1").innerHTML + " WON!";           
             }
             if (matchPlayer2 === 4) {           
                 document.getElementById("winnerIs").innerHTML = 
-                document.getElementById("Player2").innerHTML + " WON!";
+                    document.getElementById("Player2").innerHTML + " WON!";
             }                                  
         }
     }    
