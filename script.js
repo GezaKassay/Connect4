@@ -20,7 +20,7 @@ for (let i = 0; i < cells.length; ++i) {
     cells[i].onclick = updateCellValue;
 }
 
-let matrixColumns;
+let matrixColumns = 7;
 let lineIDs = [["1", "2", "3", "4", "5", "6", "7"], ["8", "9", "10", "11", "12",   
     "13", "14"], ["15", "16", "17", "18", "19", "20", "21"], ["22", "23", "24", 
     "25", "26", "27", "28"], ["29", "30", "31", "32", "33", "34", "35"], ["36", 
@@ -50,23 +50,19 @@ function updateCellValue() {
         let yellowCell = document.getElementById(elementID);
         yellowCell.style.background = "yellow";
     }     
-    if (clickCounter >= minClick) {
-        matrixColumns = 7;       
-        checkForWinner(lineIDs);
-        matrixColumns = 6;
-        checkForWinner(setSixIDs);
-        matrixColumns = 5; 
-        checkForWinner(setFiveIDs);
-        matrixColumns = 4; 
-        checkForWinner(setFourIDs);                
+    if (clickCounter >= minClick) {              
+        checkForWinner(lineIDs, matrixColumns);        
+        checkForWinner(setSixIDs, matrixColumns - 1);       
+        checkForWinner(setFiveIDs, matrixColumns - 2);         
+        checkForWinner(setFourIDs, matrixColumns - 3);                
     }     
 }
 
-function checkForWinner(array) {
+function checkForWinner(array, columns) {
     for (let i = 0; i < array.length; ++i) {
         let matchPlayer1 = 0;
         let matchPlayer2 = 0;
-        for (let j = 0; j < matrixColumns; ++j) {
+        for (let j = 0; j < columns; ++j) {
             if (document.getElementById(array[i][j]).style.background === "red") 
                 {
                 ++matchPlayer1;
