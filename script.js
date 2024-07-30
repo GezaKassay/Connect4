@@ -50,17 +50,17 @@ function updateCellValue() {
     }     
     if (clickCounter >= 7) {
         matrixColumns = 7;       
-        checkLine(lineIDs);
+        checkForWinner(lineIDs);
         matrixColumns = 6;
-        checkLine(setSixIDs);
+        checkForWinner(setSixIDs);
         matrixColumns = 5; 
-        checkLine(setFiveIDs);
+        checkForWinner(setFiveIDs);
         matrixColumns = 4; 
-        checkLine(setFourIDs);                
+        checkForWinner(setFourIDs);                
     }     
 }
 
-function checkLine(array) {
+function checkForWinner(array) {
     for (let i = 0; i < array.length; ++i) {
         let matchPlayer1 = 0;
         let matchPlayer2 = 0;
