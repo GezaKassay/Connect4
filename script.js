@@ -1,6 +1,6 @@
-const MAXCLICK = 45;
-const MINCLICK = 7;
-const MATRIXCOLUMNS = 7;
+const MAX_CLICK = 45;
+const MIN_CLICK = 7;
+const MATRIX_COLUMNS = 7;
 let clickCounter = 0;
 
 function updateName() {
@@ -42,19 +42,19 @@ function updateCellValue() {
     ++clickCounter;
     if (clickCounter % 2 != 0 && 
         document.getElementById("winnerIs").innerHTML === "" &&  
-        clickCounter < MAXCLICK) {
+        clickCounter < MAX_CLICK) {
         let redCell = document.getElementById(elementID);
         redCell.style.background = "red";
     } else if (document.getElementById("winnerIs").innerHTML === "" && 
-        clickCounter < MAXCLICK) {
+        clickCounter < MAX_CLICK) {
         let yellowCell = document.getElementById(elementID);
         yellowCell.style.background = "yellow";
     }     
-    if (clickCounter >= MINCLICK) {              
-        checkForWinner(lineIDs, MATRIXCOLUMNS);        
-        checkForWinner(setSixIDs, MATRIXCOLUMNS - 1);       
-        checkForWinner(setFiveIDs, MATRIXCOLUMNS - 2);         
-        checkForWinner(setFourIDs, MATRIXCOLUMNS - 3);                
+    if (clickCounter >= MIN_CLICK) {              
+        checkForWinner(lineIDs, MATRIX_COLUMNS);        
+        checkForWinner(setSixIDs, MATRIX_COLUMNS - 1);       
+        checkForWinner(setFiveIDs, MATRIX_COLUMNS - 2);         
+        checkForWinner(setFourIDs, MATRIX_COLUMNS - 3);                
     }     
 }
 
